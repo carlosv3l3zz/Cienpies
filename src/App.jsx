@@ -6,6 +6,7 @@ import useAuth from '@/lib/hooks/useAuth';
 
 /*Routes*/
 import Login from '@/pages/Login.jsx'
+import Ubication from '@/pages/Ubication.jsx'
 /*End::Routes*/
 
 /*Routes Protection*/
@@ -39,19 +40,18 @@ function App() {
   return (
     <>
       <Routes>
-
-        /*PUBLIC ROUTES*/
+        {/* PUBLIC ROUTES */}
           <Route path="/" element={<Login />} />
-        /*END::PUBLIC ROUTES*/
+          <Route path="/ubication" element={<Ubication />} />
+        {/* END::PUBLIC ROUTES */}
           
-        /* PRIVATE ROUTES */
+        {/* PRIVATE ROUTES */}
 
-        /*END::PRIVATE ROUTES */
+        {/* END::PRIVATE ROUTES */}
 
-        /*404*/
+        {/* 404 */}
           <Route path="*" element={<Navigate to="/" />} />
-        /*END::404 */
-
+        {/* END::404 */}
       </Routes>
     </>
   )
