@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Global*/
+:root {
+  font-family: Inter;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ant-typography,
+.ant-btn,
+.ant-input,
+.ant-select,
+.ant-picker,
+.ant-table {
+    font-family: Inter !important; 
+}
+
+body {
+  margin: 0px !important;
+  background: #fff !important;;
+  max-width: 100%;
+  color: #000 !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  outline: none;
+  border: 0px solid;
+  background-color: transparent;
+}
+
+.fondo {
+  color: #000;
+}
+
+.bg-fondo {
+  background-color: #000;
+}

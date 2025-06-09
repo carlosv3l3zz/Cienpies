@@ -1,39 +1,57 @@
-import { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { disconnectSocket } from '@/settings/socket.js';
+import useAuth from '@/lib/hooks/useAuth';
 
-/*Rutas*/
-import Login from './pages/login.jsx'
-import Envio from './pages/envio.jsx'
-import Reset from './pages/restablecer.jsx'
-import Dashboard from './pages/dashboard.jsx';
-import Historial from './pages/Historial.jsx';
-import Users from './pages/Users.jsx';
-import CreateSignals from './pages/CreateSignals.jsx';
-import Register from './pages/Register.jsx';
-import EditUser from './pages/EditUser.jsx';
-import Pay from './pages/Pay.jsx';
-/*End::Rutas*/
+/*Routes*/
+import Login from '@/pages/Login.jsx'
+/*End::Routes*/
+
+/*Routes Protection*/
+const ProtectedRoute = ({ children }) => {
+  const auth = useAuth();
+
+  if (auth === null) return <Navigate to="/" />;
+  return children;
+};
+/*End::Routes Protection*/
 
 function App() {
-  const [count, setCount] = useState(0)
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const token = searchParams.get('token');
+  const auth = useAuth();
+
+  useEffect(() => {
+    if (!auth) return;
+
+    const handleDisconnect = () => {
+      disconnectSocket();
+    };
+
+    window.addEventListener('beforeunload', handleDisconnect);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleDisconnect);
+      handleDisconnect();
+    };
+  }, [auth, location.pathname]);
 
   return (
     <>
       <Routes>
-        <Route path="/" element={token ? <Reset /> : <Login />} />
-        <Route path="/envio-restablecimiento" element={<Envio />} />
-        <Route path="/restablecimiento" element={<Reset />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/edit-user" element={<EditUser />} />
-        <Route path="/pay" element={<Pay />} />
-        
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/create-signals" element={<CreateSignals />} />
-        <Route path="/historial" element={<Historial />} />
-        <Route path="/users" element={<Users />} />
+
+        /*PUBLIC ROUTES*/
+          <Route path="/" element={<Login />} />
+        /*END::PUBLIC ROUTES*/
+          
+        /* PRIVATE ROUTES */
+
+        /*END::PRIVATE ROUTES */
+
+        /*404*/
+          <Route path="*" element={<Navigate to="/" />} />
+        /*END::404 */
+
       </Routes>
     </>
   )
