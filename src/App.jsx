@@ -5,9 +5,7 @@ import { disconnectSocket } from '@/settings/socket.js';
 import useAuth from '@/lib/hooks/useAuth';
 
 /*Routes*/
-import Login from '@/pages/Login.jsx'
-import Ubication from '@/pages/Ubication.jsx'
-import Ubication2 from '@/pages/Ubication2.jsx'
+import Home from '@/pages/Home.jsx'
 /*End::Routes*/
 
 /*Routes Protection*/
@@ -42,9 +40,7 @@ function App() {
     <>
       <Routes>
         {/* PUBLIC ROUTES */}
-          <Route path="/" element={<Login />} />
-          <Route path="/ubication" element={<Ubication />} />
-          <Route path="/ubication2" element={<Ubication2 />} />
+          <Route path="/" element={<Home />} />
         {/* END::PUBLIC ROUTES */}
           
         {/* PRIVATE ROUTES */}
