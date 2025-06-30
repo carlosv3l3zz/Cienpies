@@ -18,11 +18,11 @@ export const Home = () => {
             onClick={() => navigate("/ubication")}
           >
             <h3 className="fondo2 hover:text-[#b60000] py-3 px-4 flex text-center transition-all duration-400">
-              <span className="letter">C</span>
-              <span className="letter">L</span>
-              <span className="letter">I</span>
-              <span className="letter">C</span>
-              <span className="letter">K</span>
+              <span className="letter">H</span>
+              <span className="letter">O</span>
+              <span className="letter">V</span>
+              <span className="letter">E</span>
+              <span className="letter">R</span>
               <span className="letter ml-2.5">M</span>
               <span className="letter">E</span>
             </h3>
